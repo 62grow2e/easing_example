@@ -12,7 +12,6 @@ void setup(){
 
 	size(400, 400);
 	clearField();
-	println("-3%2: "+-3%2);
 }
 
 
@@ -37,7 +36,6 @@ void draw(){
 }
 
 void keyPressed(){
-	println(key);
 	if(key == 's'){
 		t = 0;
 		clearField();
