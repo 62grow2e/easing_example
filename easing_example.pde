@@ -28,7 +28,7 @@ void draw(){
 		else if(mode == 4)ellipse(t*(width-100)+50, easing.getQuartInOut(height-50, 50, t), 5, 5);
 		else if(mode == 5)ellipse(t*(width-100)+50, easing.getQuintInOut(height-50, 50, t), 5, 5);
 		else if(mode == 6)ellipse(t*(width-100)+50, easing.getDampOut(height-50, 50, t, .3, -1), 5, 5);
-		else if(mode == 7)ellipse(t*(width-100)+50, easing.getDampIn(height-50, 50, t, .4, -2), 5, 5);
+		else if(mode == 7)ellipse(t*(width-100)+50, easing.getDampIn(height-50, 50, t, .4, 1), 5, 5);
 		else if(mode == 8)ellipse(t*(width-100)+50, easing.getDampInOut(height-50, 50, t, .4, .6, 4, 3), 5, 5);
 		t+=dt;
 		if(t >= 1)isAnimating = false;
@@ -37,6 +37,7 @@ void draw(){
 }
 
 void keyPressed(){
+	println(key);
 	if(key == 's'){
 		t = 0;
 		clearField();

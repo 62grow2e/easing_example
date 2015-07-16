@@ -69,9 +69,7 @@ class Easing {
 		return getDampInOut(from, end, t, 0.7, 3);	
 	}
 	float getDampIn(float from, float end, float t, float t_in, int num_damp){
-		/*if(num_damp>=0)*/return (t < t_in)? ((num_damp%2==-1)?1:-1)*0.1*(end-from)*((1-(t_in-t)/t_in))*sin((1-(t_in-t))/t_in*(TWO_PI*(num_damp+.5)))+from: 1.1*(end-from)*sin(((t-t_in)/(1-t_in))*HALF_PI-HALF_PI)+end;
-		//else return (t < t_in)? ((abs(num_damp)%2==0)?-1:1)*0.1*(end-from)*((1-(t_in-t)/t_in))*sin(((t_in-t))/t_in*(TWO_PI*(num_damp+.5))-HALF_PI)+from: 1.1*(end-from)*sin(((t-t_in)/(1-t_in))*HALF_PI-HALF_PI)+end;
-		
+		return (t < t_in)? ((num_damp%2==0)?-1:1)*0.1*(end-from)*(1-(t_in-t)/t_in)*sin((1-(t_in-t))/t_in*(TWO_PI*(num_damp+.5)))+from: 1.1*(end-from)*sin(((t-t_in)/(1-t_in))*HALF_PI-HALF_PI)+end;
 	}
 	float getDampIn(float from, float end, float t, int num_damp){
 		return getDampIn(from, end, t, 0.7, num_damp);
