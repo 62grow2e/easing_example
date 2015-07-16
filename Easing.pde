@@ -55,9 +55,21 @@ class Easing {
 	// based on quadratic equation, gives back locus
 	// t_in, t_out and t_in_out mean a duration of dammping at in/out -> 0~1.0
 	// t_in,t_out, t_in_out mean a duration of back
-	
+	float getBackInOut(float from, float end, float t, float t_in, float t_out, float back_ratio_in, float back_ratio_out){
+		float center = (from+end)/2;
+		return (t <= .5)? getBackIn(from, center, t*2, t_in, back_ratio_in): getBackOut(center, end, (t-.5)*2, t_out, back_ratio_out);
+	}
+	float getBackInOut(float from, float end, float t, float t_in_out, float back_ratio_in_out){
+		return getBackInOut(from, end, t, t_in_out, t_in_out, back_ratio_in_out, back_ratio_in_out);
+	}
+	float getBackInOut(float from, float end, float t, float back_ratio_in_out){
+		return getBackInOut(from, end, t, 0.1, back_ratio_in_out);
+	}
+	float getBackInOut(float from, float end, float t){
+		return getBackInOut(from, end, t, .05);
+	}
 	float getBackIn(float from, float end, float t, float t_in, float back_ratio_in){
-		return (t < t_in)? getQuadOut(from, from-(end-from)*.back_ratio_in, t/t_in): getQuadIn(from-(end-from)*.back_ratio_in, end, (t-t_in)/(1-t_in));
+		return (t < t_in)? getQuadOut(from, from-(end-from)*back_ratio_in, t/t_in): getQuadIn(from-(end-from)*back_ratio_in, end, (t-t_in)/(1-t_in));
 	}
 	float getBackIn(float from, float end, float t, float t_in){
 		return getBackIn(from, end, t, t_in, .05);
@@ -66,7 +78,7 @@ class Easing {
 		return getBackIn(from, end, t, .1);
 	}
 	float getBackOut(float from, float end, float t, float t_out, float back_ratio_out){
-		return (1-t < t_out)? getQuadIn(end+(end-from)*back_ratio_out, end, (t-(1-t_out))/t_out): getQuadOut(from, end+(end-from)*.back_ratio_out, t/(1-t_out));
+		return (1-t < t_out)? getQuadIn(end+(end-from)*back_ratio_out, end, (t-(1-t_out))/t_out): getQuadOut(from, end+(end-from)*back_ratio_out, t/(1-t_out));
 	}
 	float getBackOut(float from, float end, float t, float t_out){
 		return getBackOut(from, end, t, t_out, .05);
