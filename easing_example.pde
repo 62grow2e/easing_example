@@ -21,6 +21,7 @@ void draw(){
 		noStroke();
 		fill(#ff0000);
 
+		println(easing.getBackOut(-50, -10, t, .1));
 		if(mode == 1)ellipse(t*(width-100)+50, easing.getLinear(height-50, 50, t), 5, 5);
 		else if(mode == 2)ellipse(t*(width-100)+50, easing.getQuadIn(height-50, 50, t), 5, 5);
 		else if(mode == 3)ellipse(t*(width-100)+50, easing.getCubicOut(height-50, 50, t), 5, 5);
@@ -29,8 +30,9 @@ void draw(){
 		else if(mode == 6)ellipse(t*(width-100)+50, easing.getDampOut(height-50, 50, t, .3, -1), 5, 5);
 		else if(mode == 7)ellipse(t*(width-100)+50, easing.getDampIn(height-50, 50, t, .4, 1), 5, 5);
 		else if(mode == 8)ellipse(t*(width-100)+50, easing.getDampInOut(height-50, 50, t, .4, .6, 4, 3), 5, 5);
+		else if(mode == 9)ellipse(t*(width-100)+50, easing.getBackOut(-50, -height+50, t, .1), 5, 5);
 		t+=dt;
-		if(t >= 1)isAnimating = false;
+		if(t > 1)isAnimating = false;
 	}
 	else t = t;
 }

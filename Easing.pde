@@ -52,6 +52,29 @@ class Easing {
 		return (t-1)*(t-1)*(t-1)*(t-1)*(t-1)*(end - from) + end;
 	}
 
+	// based on quadratic equation, gives back locus
+	// t_in, t_out and t_in_out mean a duration of dammping at in/out -> 0~1.0
+	// t_in,t_out, t_in_out mean a duration of back
+	
+	float getBackIn(float from, float end, float t, float t_in, float back_ratio_in){
+		return (t < t_in)? getQuadOut(from, from-(end-from)*.back_ratio_in, t/t_in): getQuadIn(from-(end-from)*.back_ratio_in, end, (t-t_in)/(1-t_in));
+	}
+	float getBackIn(float from, float end, float t, float t_in){
+		return getBackIn(from, end, t, t_in, .05);
+	}
+	float getBackIn(float from, float end, float t){
+		return getBackIn(from, end, t, .1);
+	}
+	float getBackOut(float from, float end, float t, float t_out, float back_ratio_out){
+		return (1-t < t_out)? getQuadIn(end+(end-from)*back_ratio_out, end, (t-(1-t_out))/t_out): getQuadOut(from, end+(end-from)*.back_ratio_out, t/(1-t_out));
+	}
+	float getBackOut(float from, float end, float t, float t_out){
+		return getBackOut(from, end, t, t_out, .05);
+	}
+	float getBackOut(float from, float end, float t){
+		return getBackOut(from, end, t, .1);
+	}
+
 	// based on damping sine wave
 	// t_in, t_out and t_in_out mean a duration of dammping at in/out -> 0~1.0
 	// num_damp, num_damp_in, num_damp_out mean a number of dampling
