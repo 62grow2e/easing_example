@@ -12,6 +12,7 @@ void setup(){
 
 	size(400, 400);
 	clearField();
+	println("-3%2: "+-3%2);
 }
 
 
@@ -23,13 +24,12 @@ void draw(){
 
 		if(mode == 1)ellipse(t*(width-100)+50, easing.getLinear(height-50, 50, t), 5, 5);
 		else if(mode == 2)ellipse(t*(width-100)+50, easing.getQuadIn(height-50, 50, t), 5, 5);
-		else if(mode == 3)ellipse(t*(width-100)+50, easing.getQuadOut(height-50, 50, t), 5, 5);
-		else if(mode == 4)ellipse(t*(width-100)+50, easing.getQuadInOut(height-50, 50, t), 5, 5);
-		else if(mode == 5)ellipse(t*(width-100)+50, easing.getCubicInOut(height-50, 50, t), 5, 5);
-		else if(mode == 6)ellipse(t*(width-100)+50, easing.getQuartInOut(height-50, 50, t), 5, 5);
-		else if(mode == 7)ellipse(t*(width-100)+50, easing.getQuintInOut(height-50, 50, t), 5, 5);
-		else if(mode == 8)ellipse(t*(width-100)+50, easing.getDampOut(height-50, 50, t, .3, 1), 5, 5);
-		else if(mode == 9)ellipse(t*(width-100)+50, easing.getDampInOut(height-50, 50, t, .4, .6, 4, 3), 5, 5);
+		else if(mode == 3)ellipse(t*(width-100)+50, easing.getCubicOut(height-50, 50, t), 5, 5);
+		else if(mode == 4)ellipse(t*(width-100)+50, easing.getQuartInOut(height-50, 50, t), 5, 5);
+		else if(mode == 5)ellipse(t*(width-100)+50, easing.getQuintInOut(height-50, 50, t), 5, 5);
+		else if(mode == 6)ellipse(t*(width-100)+50, easing.getDampOut(height-50, 50, t, .3, -1), 5, 5);
+		else if(mode == 7)ellipse(t*(width-100)+50, easing.getDampIn(height-50, 50, t, .4, -2), 5, 5);
+		else if(mode == 8)ellipse(t*(width-100)+50, easing.getDampInOut(height-50, 50, t, .4, .6, 4, 3), 5, 5);
 		t+=dt;
 		if(t >= 1)isAnimating = false;
 	}
